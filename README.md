@@ -2,7 +2,9 @@
 
 Shows the keys and mouse buttons you press on top of the Godot editor. Made it for recording bug videos and tutorials, it's basically the Screencast Keys addon from Blender but for Godot.
 
-![demo](media/demo.gif)
+
+<p align="left"><img width="398" height="208" alt="demo" src="https://raw.githubusercontent.com/Megalukes/godot-simple-screencast-keys/master/media/demo.gif" /></p>
+
 
 - Last keys and clicks as text, with `x3` when you repeat the same one
 - A little mouse at the bottom that lights up the button you're holding
