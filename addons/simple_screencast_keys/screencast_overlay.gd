@@ -71,7 +71,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not visible:
+	if not visible or not in_viewport():
 		return
 
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -99,6 +99,10 @@ func _process(delta: float) -> void:
 
 
 func _draw() -> void:
+	# Script, AssetLib and plugin screens get nothing
+	if not in_viewport():
+		return
+
 	var screen := EditorInterface.get_editor_main_screen()
 	var editor_scale := EditorInterface.get_editor_scale()
 	var size_px := int(FONT_SIZE * editor_scale)
@@ -176,6 +180,15 @@ func push_line(text: String) -> void:
 	lines.append({"text": text, "count": 1, "time": LIFE_TIME})
 	if lines.size() > MAX_LINES:
 		lines.pop_front()
+
+
+func in_viewport() -> bool:
+	return in_2d() or in_3d()
+
+
+func in_3d() -> bool:
+	var view := EditorInterface.get_editor_viewport_3d(0).get_parent() as Control
+	return view != null and view.is_visible_in_tree()
 
 
 func in_2d() -> bool:
